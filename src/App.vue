@@ -1,32 +1,28 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <v-app>
+    <component v-bind:is="layout" />
+    <global-snackbar />
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import AppLayout from "./layouts/AppLayout.vue";
+import GuestLayout from "./layouts/GuestLayout.vue";
+import GlobalSnackbar from "./components/general/GlobalSnackbar.vue";
+import { mapState } from "vuex";
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+  name: "App",
+  computed: {
+    layout() {
+      return this.$store.getters["layout/mode"];
+    },
+    ...mapState("snacks", ["records"]),
+  },
+  components: {
+    "app-layout": AppLayout,
+    "simple-layout": GuestLayout,
+    GlobalSnackbar,
+  },
+};
+</script>
