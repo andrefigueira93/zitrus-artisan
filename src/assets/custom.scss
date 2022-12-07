@@ -16,8 +16,15 @@
   cursor: pointer;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .h-full {
   height: 100%;
+}
+.w-full {
+  width: 100%;
 }
 
 @media screen and (max-width: 800px) {

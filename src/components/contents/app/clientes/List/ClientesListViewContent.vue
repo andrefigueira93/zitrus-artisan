@@ -2,167 +2,172 @@
 <template>
   <v-card flat color="transparent">
     <v-card-title class="d-flex justify-space-between">
-      <h1>Clientes</h1>
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Pesquisar"
-        single-line
-        hide-details
-        color="green"
-        class="mr-4"
-      ></v-text-field>
-      <v-btn color="success" dark @click="toggleModal">
-        <v-icon left>mdi-plus</v-icon>
-        Novo Cliente
-      </v-btn>
-      <v-dialog v-model="newClientModal" persistent max-width="600px">
-        <v-card :loading="loading">
-          <v-card-title>
-            <span class="text-h5">{{ formTitle }}</span>
-          </v-card-title>
-          <template slot="progress">
-            <v-progress-linear color="success" indeterminate height="3" />
-          </template>
-          <v-card-text>
-            <v-form :model="editingClient" @submit.prevent="createUser">
-              <v-row>
-                <v-col cols="12">
-                  <v-img
-                    :src="editingClient.avatar"
-                    max-width="120"
-                    class="rounded-circle mx-auto elevation-3"
-                    alt="Avatar"
-                  />
-                </v-col>
-                <v-col cols="12">
-                  <v-file-input
-                    :rules="[
-                      (value) =>
-                        !value ||
-                        value.size < 2000000 ||
-                        'Imagem muito pesada! Por favor, escolha uma imagem até 2MB.',
-                    ]"
-                    show-size
-                    v-model="tempAvatar"
-                    accept="image/png, image/jpeg, image/bmp"
-                    color="green"
-                    hint="Tamanho máximo 2MB"
-                    placeholder="Selecione seu avatar"
-                    prepend-icon="mdi-camera"
-                    label="Avatar"
-                  ></v-file-input>
-                </v-col>
-                <v-col cols="12">
-                  <v-text-field
-                    :disabled="loading"
-                    :error-messages="formErrors['name']"
-                    label="Nome Completo"
-                    v-model="editingClient.name"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field
-                    :disabled="loading"
-                    :error-messages="formErrors['email']"
-                    label="E-mail"
-                    v-model="editingClient.email"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field
-                    :disabled="loading"
-                    label="Telefone"
-                    v-model="editingClient.phone"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="3">
-                  <v-text-field
-                    :loading="loadingCEP || loading"
-                    :disabled="loading"
-                    :error-messages="formErrors['zipCode']"
-                    label="CEP"
-                    required
-                    @input="getAddress"
-                    v-model="editingClient.address.zipCode"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="9">
-                  <v-text-field
-                    :loading="loadingCEP || loading"
-                    :disabled="loading || cepFound"
-                    :error-messages="formErrors['street']"
-                    v-model="editingClient.address.street"
-                    label="Logradouro"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="3">
-                  <v-text-field
-                    :loading="loadingCEP"
-                    v-model="editingClient.address.number"
-                    :disabled="loading"
-                    label="Número"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="3">
-                  <v-text-field
-                    :loading="loadingCEP || loading"
-                    :disabled="loading || cepFound"
-                    :error-messages="formErrors['neighborhood']"
-                    v-model="editingClient.address.neighborhood"
-                    label="Bairro"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="3">
-                  <v-text-field
-                    :loading="loadingCEP || loading"
-                    :disabled="loading || cepFound"
-                    :error-messages="formErrors['city']"
-                    v-model="editingClient.address.city"
-                    label="Cidade"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="3">
-                  <v-text-field
-                    :loading="loadingCEP || loading"
-                    :disabled="loading || cepFound"
-                    :error-messages="formErrors['state']"
-                    v-model="editingClient.address.state"
-                    label="Estado"
-                    required
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-form>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              :loading="loading"
-              color="grey darken-1"
-              text
-              @click="toggleModal"
-            >
-              Fechar
-            </v-btn>
-            <v-btn
-              :loading="loading"
-              color="green darken-2"
-              dark
-              @click="createUser()"
-            >
-              Salvar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <v-col cols="12" md="2">
+        <h1>Clientes</h1>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Pesquisar"
+          single-line
+          hide-details
+          color="green"
+          class="mr-4"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" md="2">
+        <v-btn color="success w-full" dark @click="toggleModal">
+          <v-icon left>mdi-plus</v-icon>
+          Novo Cliente
+        </v-btn>
+      </v-col>
     </v-card-title>
+    <v-dialog v-model="newClientModal" persistent max-width="600px">
+      <v-card :loading="loading">
+        <v-card-title>
+          <span class="text-h5">{{ formTitle }}</span>
+        </v-card-title>
+        <template slot="progress">
+          <v-progress-linear color="success" indeterminate height="3" />
+        </template>
+        <v-card-text>
+          <v-form :model="editingClient" @submit.prevent="createUser">
+            <v-row>
+              <v-col cols="12">
+                <v-img
+                  :src="editingClient.avatar"
+                  max-width="120"
+                  class="rounded-circle mx-auto elevation-3"
+                  alt="Avatar"
+                />
+              </v-col>
+              <v-col cols="12">
+                <v-file-input
+                  :rules="[
+                    (value) =>
+                      !value ||
+                      value.size < 2000000 ||
+                      'Imagem muito pesada! Por favor, escolha uma imagem até 2MB.',
+                  ]"
+                  show-size
+                  v-model="tempAvatar"
+                  accept="image/png, image/jpeg, image/bmp"
+                  color="green"
+                  hint="Tamanho máximo 2MB"
+                  placeholder="Selecione seu avatar"
+                  prepend-icon="mdi-camera"
+                  label="Avatar"
+                ></v-file-input>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  :disabled="loading"
+                  :error-messages="formErrors['name']"
+                  label="Nome Completo"
+                  v-model="editingClient.name"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  :disabled="loading"
+                  :error-messages="formErrors['email']"
+                  label="E-mail"
+                  v-model="editingClient.email"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field
+                  :disabled="loading"
+                  label="Telefone"
+                  v-model="editingClient.phone"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-text-field
+                  :loading="loadingCEP || loading"
+                  :disabled="loading"
+                  :error-messages="formErrors['zipCode']"
+                  label="CEP"
+                  required
+                  @input="getAddress"
+                  v-model="editingClient.address.zipCode"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="9">
+                <v-text-field
+                  :loading="loadingCEP || loading"
+                  :disabled="loading || cepFound"
+                  :error-messages="formErrors['street']"
+                  v-model="editingClient.address.street"
+                  label="Logradouro"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-text-field
+                  :loading="loadingCEP"
+                  v-model="editingClient.address.number"
+                  :disabled="loading"
+                  label="Número"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-text-field
+                  :loading="loadingCEP || loading"
+                  :disabled="loading || cepFound"
+                  :error-messages="formErrors['neighborhood']"
+                  v-model="editingClient.address.neighborhood"
+                  label="Bairro"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-text-field
+                  :loading="loadingCEP || loading"
+                  :disabled="loading || cepFound"
+                  :error-messages="formErrors['city']"
+                  v-model="editingClient.address.city"
+                  label="Cidade"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-text-field
+                  :loading="loadingCEP || loading"
+                  :disabled="loading || cepFound"
+                  :error-messages="formErrors['state']"
+                  v-model="editingClient.address.state"
+                  label="Estado"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            :loading="loading"
+            color="grey darken-1"
+            text
+            @click="toggleModal"
+          >
+            Fechar
+          </v-btn>
+          <v-btn
+            :loading="loading"
+            color="green darken-2"
+            dark
+            @click="createUser()"
+          >
+            Salvar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-card-text>
       <v-data-table
         :headers="headers"

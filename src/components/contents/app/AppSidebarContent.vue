@@ -2,7 +2,7 @@
   <div>
     <v-list>
       <v-list-item class="justify-center">
-        <v-list-item-avatar class="mx-auto">
+        <v-list-item-avatar class="mx-auto" size="120">
           <zitrus-logo />
         </v-list-item-avatar>
       </v-list-item>

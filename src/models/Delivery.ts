@@ -14,8 +14,8 @@ export default class Delivery {
   products: Partial<Product>[];
   value?: number;
   status: DeliveryStatus;
-  "delivery_date": Date | string;
-  "created_at": Date | string;
+  deliveryDate: Date | string;
+  createdAt: Date | string;
 
   constructor(
     id: number,
@@ -29,8 +29,8 @@ export default class Delivery {
     this.id = id;
     this.products = products;
     this.client = client;
-    this.created_at = createdAt;
-    this.delivery_date = deliveryDate;
+    this.createdAt = createdAt;
+    this.deliveryDate = deliveryDate;
     this.value = value;
     this.status = status;
   }

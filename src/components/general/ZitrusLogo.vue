@@ -1,9 +1,5 @@
 <template>
-  <v-img
-    :src="require('../../assets/zitrus.jpeg')"
-    responsive
-    class="rounded-circle"
-  />
+  <v-img :src="require('../../assets/zitrus.jpeg')" class="rounded-circle" />
 </template>
 
 <script lang="ts">

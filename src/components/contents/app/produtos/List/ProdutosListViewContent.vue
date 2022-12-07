@@ -2,21 +2,26 @@
 <template>
   <v-card flat color="transparent">
     <v-card-title class="d-flex justify-space-between">
-      <h1>Produtos</h1>
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Pesquisar"
-        single-line
-        hide-details
-        color="green"
-        class="mr-4"
-      ></v-text-field>
-      <v-btn color="success" dark @click="toggleModal">
-        <v-icon left>mdi-plus</v-icon>
-        Novo Produto
-      </v-btn>
+      <v-col cols="12" md="2">
+        <h1>Produtos</h1>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Pesquisar"
+          single-line
+          hide-details
+          color="green"
+          class="mr-4"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" md="2">
+        <v-btn color="success w-full" dark @click="toggleModal">
+          <v-icon left>mdi-plus</v-icon>
+          Novo Produto
+        </v-btn>
+      </v-col>
       <v-dialog v-model="newProductModal" persistent max-width="600px">
         <v-card :loading="loading">
           <v-card-title>

@@ -1,46 +1,52 @@
 <template>
-  <v-sheet>
-    <h1>Olá, {{ user?.username }}</h1>
-    <v-row class="pt-10">
-      <v-col
-        v-for="(chart, i) in charts"
-        :key="i"
-        class="col-12 col-sm-6 mt-10"
-      >
-        <v-card class="rounded-lg">
-          <v-sheet
-            class="v-sheet--offset mx-auto rounded-lg"
-            color="green"
-            elevation="12"
-            max-width="calc(100% - 32px)"
-          >
-            <v-sparkline
-              :labels="chart.labels"
-              :value="chart.value"
-              :smooth="16"
-              :gradient="['#99d504', '#99d504', '#fff']"
-              :line-width="3"
-              color="white"
-              auto-draw
-              stroke-linecap="round"
-              padding="16"
-            ></v-sparkline>
-          </v-sheet>
-          <v-card-text class="pt-0">
-            <div class="text-h6 font-weight-light mb-2">{{ chart.title }}</div>
-            <v-divider class="my-2"></v-divider>
-            <v-icon class="mr-2" small> {{ chart.icon }} </v-icon>
-            <span class="text-caption">
-              {{ chart.subtitle }}
-            </span>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col class="col-12 col-sm-6 mt-10 pa-0 ma-0">
-        <Doughnut :data="chartData" :options="chartOptions" />
-      </v-col>
-    </v-row>
-  </v-sheet>
+  <v-card flat color="transparent">
+    <v-card-title>
+      <h1 class="capitalize">Olá, {{ user?.username }}</h1>
+    </v-card-title>
+    <v-card-text>
+      <v-row>
+        <v-col
+          v-for="(chart, i) in charts"
+          :key="i"
+          class="col-12 col-sm-6 mt-10"
+        >
+          <v-card class="rounded-lg">
+            <v-sheet
+              class="v-sheet--offset mx-auto rounded-lg"
+              color="green"
+              elevation="12"
+              max-width="calc(100% - 32px)"
+            >
+              <v-sparkline
+                :labels="chart.labels"
+                :value="chart.value"
+                :smooth="16"
+                :gradient="['#99d504', '#99d504', '#fff']"
+                :line-width="3"
+                color="white"
+                auto-draw
+                stroke-linecap="round"
+                padding="16"
+              ></v-sparkline>
+            </v-sheet>
+            <v-card-text class="pt-0">
+              <div class="text-h6 font-weight-light mb-2">
+                {{ chart.title }}
+              </div>
+              <v-divider class="my-2"></v-divider>
+              <v-icon class="mr-2" small> {{ chart.icon }} </v-icon>
+              <span class="text-caption">
+                {{ chart.subtitle }}
+              </span>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col class="col-12 col-sm-6 mt-10 pa-0 ma-0">
+          <Doughnut :data="chartData" :options="chartOptions" />
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
