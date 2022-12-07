@@ -20,12 +20,10 @@
               <v-sparkline
                 :labels="chart.labels"
                 :value="chart.value"
-                :smooth="16"
                 :gradient="['#99d504', '#99d504', '#fff']"
-                :line-width="3"
+                line-width="3"
                 color="white"
-                auto-draw
-                stroke-linecap="round"
+                smooth="12"
                 padding="16"
               ></v-sparkline>
             </v-sheet>
@@ -152,8 +150,8 @@ export default {
         datasets: [
           {
             data: [
-              this.charts[1].value.reduce((acc, value) => acc + value, 0),
               this.charts[0].value.reduce((acc, value) => acc + value, 0),
+              this.charts[1].value.reduce((acc, value) => acc + value, 0),
               this.charts[2].value.reduce((acc, value) => acc + value, 0),
             ],
             backgroundColor: ["#99d504", "#4caf50", "#8bc34a"],
