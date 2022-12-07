@@ -1,8 +1,7 @@
 <template>
-  <v-row style="height: 100%" class="m-0">
+  <v-row class="ma-0 h-full">
     <v-col
-      class="col-12 col-sm-9 align-self-center text-center"
-      style="padding: 0"
+      class="col-12 col-sm-9 align-self-center text-center d-none d-sm-block"
     >
       <v-img
         src="/logo.png"
@@ -12,12 +11,8 @@
         class="mx-auto rounded-circle elevation-1"
       />
     </v-col>
-    <v-col class="col-12 col-sm-3 m-0" style="padding: 0">
-      <v-card
-        elevation="8"
-        class="text-center pa-8 pa-sm-12"
-        style="height: 100%"
-      >
+    <v-col class="col-12 col-sm-3 ma-0 pa-0">
+      <v-card elevation="8" class="text-center pa-8 pa-sm-12 h-full">
         <v-card-text>
           <div class="mx-auto" style="max-width: 5rem">
             <zitrus-logo />

@@ -7,9 +7,6 @@
     </template>
 
     <v-list>
-      <v-list-item link to="/app/meu-perfil">
-        <v-list-item-title>Meu Perfil</v-list-item-title>
-      </v-list-item>
       <v-list-item @click="logout">
         <v-list-item-title> Sair </v-list-item-title>
       </v-list-item>

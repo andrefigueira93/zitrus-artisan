@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <component v-bind:is="layout" />
-    <global-snackbar />
+    <v-main class="grey lighten-5">
+      <component v-bind:is="layout" />
+      <global-snackbar />
+    </v-main>
   </v-app>
 </template>
 

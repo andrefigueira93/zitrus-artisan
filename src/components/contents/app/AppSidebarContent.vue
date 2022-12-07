@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-list nav dense>
-      <v-list-item class="px-2">
-        <v-list-item-avatar size="120" class="mx-auto">
+    <v-list>
+      <v-list-item class="justify-center">
+        <v-list-item-avatar class="mx-auto">
           <zitrus-logo />
         </v-list-item-avatar>
       </v-list-item>

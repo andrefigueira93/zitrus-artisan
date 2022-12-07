@@ -1,11 +1,11 @@
 <template>
   <v-sheet>
     <h1>Olá, {{ user?.username }}</h1>
-    <v-row>
+    <v-row class="pt-10">
       <v-col
         v-for="(chart, i) in charts"
         :key="i"
-        class="col-12 col-sm-6 pt-10"
+        class="col-12 col-sm-6 mt-10"
       >
         <v-card class="rounded-lg">
           <v-sheet
@@ -36,7 +36,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col class="col-12 col-sm-6 pt-10">
+      <v-col class="col-12 col-sm-6 mt-10 pa-0 ma-0">
         <Doughnut :data="chartData" :options="chartOptions" />
       </v-col>
     </v-row>

@@ -10,9 +10,7 @@ import "./assets/custom.scss";
 
 Vue.config.productionTip = false;
 
-if (process.env.NODE_ENV === "development") {
-  makeServer();
-}
+makeServer();
 
 new Vue({
   router,

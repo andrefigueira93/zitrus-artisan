@@ -36,12 +36,6 @@ const routes: Array<RouteConfig> = [
     meta: { requiresAuth: true, transitionName: "slide-left" },
   },
   {
-    path: "/app/meu-perfil",
-    name: "app-meu-perfil",
-    component: () => import("../views/app/meu-perfil/MeuPerfilView.vue"),
-    meta: { requiresAuth: true, transitionName: "slide-left" },
-  },
-  {
     path: "*",
     redirect: "/",
     meta: { requiresAuth: false, transitionName: "slide-right" },

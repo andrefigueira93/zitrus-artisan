@@ -1,7 +1,8 @@
 <template>
   <v-img
     :src="require('../../assets/zitrus.jpeg')"
-    class="my-3 rounded-circle"
+    responsive
+    class="rounded-circle"
   />
 </template>
 
